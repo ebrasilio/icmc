@@ -4,7 +4,7 @@
 Projeto final - Python
 Sistema de cadastro de bibliotecas V.0.0.1
 
-Etapa 1: Estrutura Inicial e Menu
+<p>Etapa 1: Estrutura Inicial e Menu</p>
 Etapa 2: Cadastro de Livros
 Etapa 3: Consulta e busca
 Etapa 4: empréstimos e devoluções
