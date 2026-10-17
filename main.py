@@ -1,17 +1,23 @@
 
 
 
-def cadastrar(titulo, autor, ano, status):
+def cadastrar():
     # criar um dicionário com os dados, status de disponibilidade = "Sim"
     # como armazenamento, precisa utilizar uma lista global
     # requisito: o sistema deve permitir o cadastro de no minimo 5 livros para validação inicial
-    pass
+    print("***Bem-vindo ao sistema de cadastramento ***\n")
 
-def listar():
-    # percorrer a lista de livros e exibir os detalhes de cada um de forma organizada
-    pass
+    titulo = input("Informe o título: ")
+    autor = input("Informe o autor principal: ")
+    ano = input("Informe o ano de publicação: ")
+    assunto = input("Informe o assunto principal: ")
+    status = "sim"
+    bibli = dict( zip( ["titulo", "autor", "ano", "assunto", "status"], 
+                      [titulo, autor, ano, assunto, status] ))
+    print(bibli)
+    return () 
 
-def consultar(titulo=None, autor=None):
+def consultar(titulo=None, autor=None, assunto=None):
     # busca por filtros implementar a busca por titulo ou autor
     pass
 
@@ -25,19 +31,17 @@ def entrada():
 
 
 
-opt = int(input("Selecione a opção desejada: \n1- Cadastrar \n2- listar \n3- Consulta \n4- Empréstimo \n5- Devolução \n6- Saida\n"))
-
+opt = int(input("Selecione a opção desejada: \n1- Cadastrar \n2- Consulta \n3- Empréstimo \n4- Devolução \n6- Saida\n"))
 while opt != 6:
     if opt == 1:
-        cadastrar(titulo, autor, edição, status)
-    if opt == 2:
-        listar()
-    if opt == 3:
-        consultar(titulo, autor)
-    if opt == 4:
+        cadastrar()
+    elif opt == 2:
+        consultar()
+    elif opt == 3:
         saida()
-    if opt == 5:
+    elif opt == 4:
        entrada()
+    
 print("Bye")
             
 
