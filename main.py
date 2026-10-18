@@ -5,23 +5,22 @@ def cadastrar():
 
     print("***Bem-vindo ao sistema de cadastramento ***\n")
     
-    biblio = []
     titulo = input("Informe o título: ")
     autor = input("Informe o autor principal: ")
     ano = input("Informe o ano de publicação: ")
     assunto = input("Informe o assunto principal: ")
     status = "sim"
-    biblio.append(
-        dict( zip( ["titulo", "autor", "ano", "assunto","status"], [titulo, autor, ano, assunto, status] )))
 
+    aux = dict(
+        {"titulo": titulo, "autor": autor, "ano": ano, "assunto": assunto, "status": status})
+    
     with open("biblioteca.json", "r+", encoding="utf-8") as file:
         dados = json.load(file)
 
-    biblio.append(dados)
-
+    dados.append(aux)
        
     with open("biblioteca.json", "w+", encoding = "utf-8") as file:
-         json.dump(biblio, file, ensure_ascii=False, indent=2)
+         json.dump(dados, file, ensure_ascii=False, indent=2)
 
 
 # def atualizar(biblio):
@@ -32,6 +31,18 @@ def cadastrar():
 #         json.dump(bib, biblio, ensure_ascii=False, ident=4)
 
 #     return
+
+
+def listar():
+    # ler o arquivo biblioteca.json e formatar uma tabela na tela
+    with open("biblioteca.json", "r+", encoding="utf-8") as file:
+            dados = json.load(file)
+    
+    for i in range(0,len(dados)):
+        print(dados[i]["titulo"] + "\t" + dados[i]["autor"])
+
+  
+
 
 def consultar(titulo=None, autor=None, assunto=None):
     # abrir o arquivo em formato json 
