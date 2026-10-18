@@ -1,25 +1,35 @@
-
+import json
 
 
 def cadastrar():
-    # como armazenamento, precisa utilizar uma lista global
-    # requisito: o sistema deve permitir o cadastro de no minimo 5 livros para validação inicial
 
     print("***Bem-vindo ao sistema de cadastramento ***\n")
-
-    biblio = []
+    
 
     titulo = input("Informe o título: ")
     autor = input("Informe o autor principal: ")
     ano = input("Informe o ano de publicação: ")
     assunto = input("Informe o assunto principal: ")
     status = "sim"
-    aux = dict( zip( ["titulo", "autor", "ano", "assunto", "status"], 
+    biblio = dict( zip( ["titulo", "autor", "ano", "assunto", "status"], 
                             [titulo, autor, ano, assunto, status] ))
-    biblio.append(aux)
-    return biblio
+    print (biblio)
+    print(type(biblio))
+
+    with open("biblioteca.json", "w+", encoding = "utf-8") as bib:
+         json.dump(biblio, bib, ensure_ascii=False, indent=2)
+
+# def atualizar(biblio):
+#     with open("biblioteca.json", "r+", encoding="utf-8") as arq:
+#         biblioteca = json.load(arq)
+    
+#     with open("biblioteca.json", "w+", encoding = "utf-8") as bib:
+#         json.dump(bib, biblio, ensure_ascii=False, ident=4)
+
+#     return
 
 def consultar(titulo=None, autor=None, assunto=None):
+    # abrir o arquivo em formato json 
     # busca por filtros implementar a busca por titulo ou autor
     pass
 
@@ -36,8 +46,7 @@ def entrada():
 opt = int(input("Selecione a opção desejada: \n1- Cadastrar \n2- Consulta \n3- Empréstimo \n4- Devolução \n6- Saida\n"))
 while opt != 6:
     if opt == 1:
-        tt = cadastrar()
-        print(tt)
+        cadastrar()
     elif opt == 2:
         consultar()
     elif opt == 3:
