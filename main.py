@@ -5,19 +5,24 @@ def cadastrar():
 
     print("***Bem-vindo ao sistema de cadastramento ***\n")
     
-
+    biblio = []
     titulo = input("Informe o título: ")
     autor = input("Informe o autor principal: ")
     ano = input("Informe o ano de publicação: ")
     assunto = input("Informe o assunto principal: ")
     status = "sim"
-    biblio = dict( zip( ["titulo", "autor", "ano", "assunto", "status"], 
-                            [titulo, autor, ano, assunto, status] ))
-    print (biblio)
-    print(type(biblio))
+    biblio.append(
+        dict( zip( ["titulo", "autor", "ano", "assunto","status"], [titulo, autor, ano, assunto, status] )))
 
-    with open("biblioteca.json", "w+", encoding = "utf-8") as bib:
-         json.dump(biblio, bib, ensure_ascii=False, indent=2)
+    with open("biblioteca.json", "r+", encoding="utf-8") as file:
+        dados = json.load(file)
+
+    biblio.append(dados)
+
+       
+    with open("biblioteca.json", "w+", encoding = "utf-8") as file:
+         json.dump(biblio, file, ensure_ascii=False, indent=2)
+
 
 # def atualizar(biblio):
 #     with open("biblioteca.json", "r+", encoding="utf-8") as arq:
@@ -43,17 +48,19 @@ def entrada():
 
 
 
-opt = int(input("Selecione a opção desejada: \n1- Cadastrar \n2- Consulta \n3- Empréstimo \n4- Devolução \n6- Saida\n"))
+opt = int(input("Selecione a opção desejada: \n1- Cadastrar \n2- Listar: \n3- Consulta \n4- Empréstimo \n5- Devolução \n6- Saida\n"))
 while opt != 6:
     if opt == 1:
         cadastrar()
     elif opt == 2:
-        consultar()
+        listar()
     elif opt == 3:
-        saida()
+        consultar()
     elif opt == 4:
+        saida()
+    elif opt == 5:
        entrada()
-    opt = int(input("\nSelecione a opção desejada: \n1- Cadastrar \n2- Consulta \n3- Empréstimo \n4- Devolução \n6- Saida\n"))
+    opt = int(input("\nSelecione a opção desejada: \n1- Cadastrar \n2- Listar \n3- Consulta \n4- Empréstimo \n5- Devolução \n6- Saida\n"))
 print("Bye")
             
 
