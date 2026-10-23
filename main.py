@@ -28,15 +28,20 @@ def cadastrar():
         with open("biblioteca.json", "w", encoding = "utf-8") as file:
             json.dump(biblioteca, file, ensure_ascii=False, indent=2)
         
-
-
+        
 def listar():
-    # ler o arquivo biblioteca.json e formatar uma tabela na tela
+    # função listar, lê o arquivo biblioteca.json e mostra todos os livros cadastrados
+    # no avervo na tela
+
     with open("biblioteca.json", "r+", encoding="utf-8") as file:
-            dados = json.load(file)
-    
-    for i in range(0,len(dados)):
-        print(dados[i]["titulo"] + "\t" + dados[i]["autor"])
+        biblioteca = json.load(file)
+
+    print("_______________________________________________________________________________________________")
+    print("                                          ACERVO: ")
+    for i in biblioteca:
+        print(i["titulo"], "-",i["autor"], "\t\tExemplar disponível? ", i["status"])
+        
+        # print(dados[i]["titulo"] + "\t" + dados[i]["autor"])
 
   
 
@@ -56,7 +61,7 @@ def entrada():
 
 
 print("\n*** Bem vindo ao SisBiBra - Sistema de Bibliotecas Brasilio ***\n")
-opt = int(input("Selecione a opção desejada: \n1- Cadastrar \n2- Listar: \n3- Consulta \n4- Empréstimo \n5- Devolução \n6- Saida\n"))
+opt = int(input("Selecione a opção desejada: \n1- Cadastrar \n2- Listar: \n3- Consulta \n4- Empréstimo \n5- Devolução \n6- Saida\n\n"))
 while opt != 6:
     if opt == 1:
         cadastrar()
