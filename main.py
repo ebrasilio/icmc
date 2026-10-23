@@ -40,16 +40,23 @@ def listar():
     print("                                          ACERVO: ")
     for i in biblioteca:
         print(i["titulo"], "-",i["autor"], "\t\tExemplar disponível? ", i["status"])
-        
-        # print(dados[i]["titulo"] + "\t" + dados[i]["autor"])
-
-  
 
 
-def consultar(titulo=None, autor=None, assunto=None):
+def consultar(arg):
     # abrir o arquivo em formato json 
     # busca por filtros implementar a busca por titulo ou autor
-    pass
+    
+    with open("biblioteca.json", "r+", encoding="utf-8") as file:
+        biblioteca = json.load(file)
+
+    for i in biblioteca:
+            if i.get("titulo") == arg:
+                    print(i)
+            if i.get("autor") == arg:
+                    print(i)
+            if i.get("assunto") == arg:
+                    print(i)
+
 
 def saida():
     # mudar o status para indisponivel, "Não"
@@ -68,7 +75,8 @@ while opt != 6:
     elif opt == 2:
         listar()
     elif opt == 3:
-        consultar()
+        arg = input("Termo para consulta: \n ")
+        consultar(arg)
     elif opt == 4:
         saida()
     elif opt == 5:
