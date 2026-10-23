@@ -1,36 +1,33 @@
+import os
 import json
 
 
 def cadastrar():
+    # Função cadastrar, recebe os atributos do livro, se o arquivo bibloteca.json
+    # existe, inclui o novo volume e salva. Se ainda não existe, a função cria.
 
-    print("***Bem-vindo ao sistema de cadastramento ***\n")
-    
+    print("Cadastramento\n")
     titulo = input("Informe o título: ")
     autor = input("Informe o autor principal: ")
     ano = input("Informe o ano de publicação: ")
     assunto = input("Informe o assunto principal: ")
     status = "sim"
 
-    aux = dict(
+    aux = dict( 
         {"titulo": titulo, "autor": autor, "ano": ano, "assunto": assunto, "status": status})
     
-    with open("biblioteca.json", "r+", encoding="utf-8") as file:
-        dados = json.load(file)
+    if os.path.exists("biblioteca.json"):
+        with open("biblioteca.json", "r", encoding="utf-8") as file:
+            biblioteca = json.load(file)
+        biblioteca.append(aux)
 
-    dados.append(aux)
-       
-    with open("biblioteca.json", "w+", encoding = "utf-8") as file:
-         json.dump(dados, file, ensure_ascii=False, indent=2)
-
-
-# def atualizar(biblio):
-#     with open("biblioteca.json", "r+", encoding="utf-8") as arq:
-#         biblioteca = json.load(arq)
-    
-#     with open("biblioteca.json", "w+", encoding = "utf-8") as bib:
-#         json.dump(bib, biblio, ensure_ascii=False, ident=4)
-
-#     return
+        with open("biblioteca.json", "w", encoding = "utf-8") as file:
+            json.dump(biblioteca, file, ensure_ascii=False, indent=2)
+    else:
+        biblioteca = [aux]
+        with open("biblioteca.json", "w", encoding = "utf-8") as file:
+            json.dump(biblioteca, file, ensure_ascii=False, indent=2)
+        
 
 
 def listar():
@@ -58,7 +55,7 @@ def entrada():
     pass
 
 
-
+print("\n*** Bem vindo ao SisBiBra - Sistema de Bibliotecas Brasilio ***\n")
 opt = int(input("Selecione a opção desejada: \n1- Cadastrar \n2- Listar: \n3- Consulta \n4- Empréstimo \n5- Devolução \n6- Saida\n"))
 while opt != 6:
     if opt == 1:
