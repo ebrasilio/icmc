@@ -45,6 +45,7 @@ def listar():
 def consultar(arg):
     # abrir o arquivo em formato json 
     # busca por filtros implementar a busca por titulo ou autor
+    # colocar aviso de busca vazia
     
     with open("biblioteca.json", "r+", encoding="utf-8") as file:
         biblioteca = json.load(file)
