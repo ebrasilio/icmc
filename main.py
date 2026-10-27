@@ -49,17 +49,19 @@ def consultar(arg):
     with open("biblioteca.json", "r+", encoding="utf-8") as file:
         biblioteca = json.load(file)
 
-    for i in biblioteca:
-            if i.get("titulo") == arg:
-                    print(i)
-            if i.get("autor") == arg:
-                    print(i)
-            if i.get("assunto") == arg:
-                    print(i)
+    for i in range(len(biblioteca)):
+            if arg in i['titulo']:
+                    print("id = "+i, biblioteca[i]["titulo"] + "\tDisponívle? " + biblioteca[i]["status"] )
+            elif arg in i["autor"]:
+                    print("id = "+i, biblioteca[i]["titulo"] + "\tDisponívle? " + biblioteca[i]["status"] )
+            elif arg in i["assunto"]:
+                    print("id = "+i, biblioteca[i]["titulo"] + "\tDisponívle? " + biblioteca[i]["status"] )
 
 
-def saida():
-    # mudar o status para indisponivel, "Não"
+def saida(id):
+    # Na retirada do livro, o usuário deve indicar o id que foi indicado na busca,
+    # mudar o status do livro para Não
+    
     pass
 
 def entrada():
@@ -78,7 +80,8 @@ while opt != 6:
         arg = input("Termo para consulta: \n ")
         consultar(arg)
     elif opt == 4:
-        saida()
+        id = input("Livro para retirar, informe o id: ")
+        saida(id)
     elif opt == 5:
        entrada()
     opt = int(input("\nSelecione a opção desejada: \n1- Cadastrar \n2- Listar \n3- Consulta \n4- Empréstimo \n5- Devolução \n6- Saida\n"))
