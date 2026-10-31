@@ -14,23 +14,30 @@
     "status": "sim"
   },
   {
-    "titulo": "Hoje é dia",
-    "autor": "eu mesma",
-    "ano": "2026",
-    "assunto": "memorias",
-    "status": "sim"
-  },
-  {
     "titulo": "Programação Shell Linux",
     "autor": "Júlio Cezar Neves",
     "ano": "2007",
     "assunto": "linux",
+    "status": "não"
+  },
+  {
+    "titulo": "O guia oficial do Club Penguin",
+    "autor": "Disney",
+    "ano": "2010",
+    "assunto": "quadrinhos",
     "status": "sim"
   },
   {
-    "titulo": "Mulheres Alteradas 1",
-    "autor": "maitena",
-    "ano": "2003",
+    "titulo": "Mulheres alteradas 1",
+    "autor": "Maitena",
+    "ano": "2000",
+    "assunto": "quadrinhos",
+    "status": "sim"
+  },
+  {
+    "titulo": "Sinal e Ruido",
+    "autor": "Neil Gaiman",
+    "ano": "2000",
     "assunto": "quadrinhos",
     "status": "sim"
   }
