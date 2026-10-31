@@ -5,7 +5,7 @@ import json
 def cadastrar():
     # Função cadastrar, recebe os atributos do livro, se o arquivo bibloteca.json
     # existe, inclui o novo volume e salva. Se ainda não existe, a função cria.
-
+    
     print("Cadastramento\n")
     titulo = input("Informe o título: ")
     autor = input("Informe o autor principal: ")
@@ -27,8 +27,7 @@ def cadastrar():
         biblioteca = [aux]
         with open("biblioteca.json", "w", encoding = "utf-8") as file:
             json.dump(biblioteca, file, ensure_ascii=False, indent=2)
-        
-        
+
 def listar():
     # função listar, lê o arquivo biblioteca.json e mostra todos os livros cadastrados
     # no avervo na tela
@@ -41,33 +40,28 @@ def listar():
     for i in biblioteca:
         print(i["titulo"], "-",i["autor"], "\t\tExemplar disponível? ", i["status"])
 
-
 def consultar(arg):
     # abrir o arquivo em formato json 
     # busca por filtros implementar a busca por titulo ou autor
-    # colocar aviso de busca vazia
     
     with open("biblioteca.json", "r+", encoding="utf-8") as file:
         biblioteca = json.load(file)
 
     for i in range(len(biblioteca)):
-            if arg in i['titulo']:
-                    print("id = "+i, biblioteca[i]["titulo"] + "\tDisponívle? " + biblioteca[i]["status"] )
-            elif arg in i["autor"]:
-                    print("id = "+i, biblioteca[i]["titulo"] + "\tDisponívle? " + biblioteca[i]["status"] )
-            elif arg in i["assunto"]:
-                    print("id = "+i, biblioteca[i]["titulo"] + "\tDisponívle? " + biblioteca[i]["status"] )
-
+        if arg in biblioteca [i]["titulo"] or arg in biblioteca [i]["autor"] or arg in biblioteca [i]["assunto"]:
+            print("id=" , i, "Titulo=", biblioteca[i]["titulo"], "Autor=", biblioteca[i]["autor"], "\t--> Disponível? " + biblioteca[i]["status"])
 
 def saida(id):
-    # Na retirada do livro, o usuário deve indicar o id que foi indicado na busca,
-    # mudar o status do livro para Não
-    
-    pass
 
-def entrada():
-    # mudar status para "Sim" novamente
-    pass
+    levar = input("Confirma retirada do título? (S/N):")
+
+    if leva == "S":
+        biblioteca[id]["status"] = "não"
+        print("Livro retirado com sucesso")
+    
+def entrada(id):
+    biblioteca[id]["status"] = "não"
+    print("Livro de volta ao acervo")
 
 
 print("\n*** Bem vindo ao SisBiBra - Sistema de Bibliotecas Brasilio ***\n")
@@ -88,7 +82,3 @@ while opt != 6:
     opt = int(input("\nSelecione a opção desejada: \n1- Cadastrar \n2- Listar \n3- Consulta \n4- Empréstimo \n5- Devolução \n6- Saida\n"))
 print("Bye")
             
-
-
-
-
