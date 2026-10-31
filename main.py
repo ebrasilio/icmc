@@ -41,7 +41,7 @@ def listar():
 
     biblioteca = open_bibliteca()
     print ("_"*96)
-    print("                                          ACERVO: ")
+    print(f"{"ACERVO:":^96}")
     for i in range(len(biblioteca)):
         print("id=" , i, "Titulo=", f"{biblioteca[i]["titulo"]:<38}", "Autor=", f"{biblioteca[i]["autor"]:<20}", "Disponível?", f"{biblioteca[i]["status"]}")
     print("\n")
