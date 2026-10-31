@@ -52,17 +52,25 @@ def consultar(arg):
             print("id=" , i, "Titulo=", biblioteca[i]["titulo"], "Autor=", biblioteca[i]["autor"], "\t--> Disponível? " + biblioteca[i]["status"])
 
 def saida(id):
+    with open("biblioteca.json", "r+", encoding="utf-8") as file:
+        biblioteca = json.load(file)
 
     levar = input("Confirma retirada do título? (S/N):")
 
-    if leva == "S":
+    if levar == "S":
         biblioteca[id]["status"] = "não"
         print("Livro retirado com sucesso")
-    
-def entrada(id):
-    biblioteca[id]["status"] = "não"
-    print("Livro de volta ao acervo")
+        with open("biblioteca.json", "w", encoding = "utf-8") as file:
+                    json.dump(biblioteca, file, ensure_ascii=False, indent=2)
 
+
+def entrada(id):
+    with open("biblioteca.json", "r+", encoding="utf-8") as file:
+        biblioteca = json.load(file)
+    biblioteca[id]["status"] = "sim"
+    print("Livro de volta ao acervo")
+    with open("biblioteca.json", "w+", encoding = "utf-8") as file:
+        json.dump(biblioteca, file, ensure_ascii=False, indent=2)
 
 print("\n*** Bem vindo ao SisBiBra - Sistema de Bibliotecas Brasilio ***\n")
 opt = int(input("Selecione a opção desejada: \n1- Cadastrar \n2- Listar: \n3- Consulta \n4- Empréstimo \n5- Devolução \n6- Saida\n\n"))
@@ -75,10 +83,11 @@ while opt != 6:
         arg = input("Termo para consulta: \n ")
         consultar(arg)
     elif opt == 4:
-        id = input("Livro para retirar, informe o id: ")
+        id = int(input("Livro para retirar, informe o id: "))
         saida(id)
     elif opt == 5:
-       entrada()
+       id = int(input("Livro para devolução, informe o id: "))
+       entrada(id)
     opt = int(input("\nSelecione a opção desejada: \n1- Cadastrar \n2- Listar \n3- Consulta \n4- Empréstimo \n5- Devolução \n6- Saida\n"))
 print("Bye")
             

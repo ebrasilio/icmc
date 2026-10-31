@@ -19,5 +19,19 @@
     "ano": "2026",
     "assunto": "memorias",
     "status": "sim"
+  },
+  {
+    "titulo": "Programação Shell Linux",
+    "autor": "Júlio Cezar Neves",
+    "ano": "2007",
+    "assunto": "linux",
+    "status": "sim"
+  },
+  {
+    "titulo": "Mulheres Alteradas 1",
+    "autor": "maitena",
+    "ano": "2003",
+    "assunto": "quadrinhos",
+    "status": "sim"
   }
 ]
