@@ -35,42 +35,52 @@ def listar():
     with open("biblioteca.json", "r+", encoding="utf-8") as file:
         biblioteca = json.load(file)
 
-    print("_______________________________________________________________________________________________")
+    print ("_"*96)
     print("                                          ACERVO: ")
-    for i in biblioteca:
-        print(i["titulo"], "-",i["autor"], "\t\tExemplar disponível? ", i["status"])
+    for i in range(len(biblioteca)):
+        print("id=" , i, "Titulo=", f"{biblioteca[i]["titulo"]:<38}", "Autor=", f"{biblioteca[i]["autor"]:<20}", "Disponível?", f"{biblioteca[i]["status"]}")
+    print("\n")
 
 def consultar(arg):
     # abrir o arquivo em formato json 
-    # busca por filtros implementar a busca por titulo ou autor
+    # busca por filtros implementar a busca por titulo , autor ou assunto
     
     with open("biblioteca.json", "r+", encoding="utf-8") as file:
         biblioteca = json.load(file)
 
+    print ("_"*96)
     for i in range(len(biblioteca)):
         if arg in biblioteca [i]["titulo"] or arg in biblioteca [i]["autor"] or arg in biblioteca [i]["assunto"]:
-            print("id=" , i, "Titulo=", biblioteca[i]["titulo"], "Autor=", biblioteca[i]["autor"], "\t--> Disponível? " + biblioteca[i]["status"])
+             print("id=" , i, "Titulo=", f"{biblioteca[i]["titulo"]:<38}", "Autor=", f"{biblioteca[i]["autor"]:<20}", "Disponível?", f"{biblioteca[i]["status"]}")
 
 def saida(id):
     with open("biblioteca.json", "r+", encoding="utf-8") as file:
         biblioteca = json.load(file)
 
-    levar = input("Confirma retirada do título? (S/N):")
+    levar = input("--> Confirma retirada do título? (S/N):")
 
     if levar == "S":
-        biblioteca[id]["status"] = "não"
-        print("Livro retirado com sucesso")
-        with open("biblioteca.json", "w", encoding = "utf-8") as file:
+        if biblioteca[id]["status"] == "não":
+            print("--> Livro já emprestado, saída não autorizada\n")
+        else:
+            biblioteca[id]["status"] = "não"
+            print("--> Livro retirado com sucesso\n")
+            with open("biblioteca.json", "w", encoding = "utf-8") as file:
                     json.dump(biblioteca, file, ensure_ascii=False, indent=2)
-
+    else:
+        print("--> Saída não realizada")
 
 def entrada(id):
     with open("biblioteca.json", "r+", encoding="utf-8") as file:
         biblioteca = json.load(file)
-    biblioteca[id]["status"] = "sim"
-    print("Livro de volta ao acervo")
-    with open("biblioteca.json", "w+", encoding = "utf-8") as file:
-        json.dump(biblioteca, file, ensure_ascii=False, indent=2)
+
+    if biblioteca[id]["status"] == "não":
+        biblioteca[id]["status"] ="sim"
+        print("--> Livro de volta ao acervo")
+        with open("biblioteca.json", "w+", encoding = "utf-8") as file:
+            json.dump(biblioteca, file, ensure_ascii=False, indent=2)
+    else:
+        print("--> Livro encontra-se no nosso acervo, Verifique Id:")
 
 print("\n*** Bem vindo ao SisBiBra - Sistema de Bibliotecas Brasilio ***\n")
 opt = int(input("Selecione a opção desejada: \n1- Cadastrar \n2- Listar: \n3- Consulta \n4- Empréstimo \n5- Devolução \n6- Saida\n\n"))
