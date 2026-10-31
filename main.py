@@ -128,7 +128,7 @@ def delete(id):
     
 #----- Programa Principal -----#
 print("\n*** Bem vindo ao SisBiBra - Sistema de Bibliotecas Brasilio ***\n")
-opt = int(input("Selecione a opção desejada: \n1- Cadastrar          (para incluir livros novos) \n2- Listar             (lista todo o acervo) \n3- Consulta           (consulta em título, autor ou assunto) \n4- Empréstimo  \n5- Devolução \n6- Estatística do acervo \n7- Remover    (aposenta livros do acervo) \n0- Saida\n\n"))
+opt = int(input("Selecione a opção desejada: \n1- Cadastrar          (para incluir livros novos) \n2- Listar             (lista todo o acervo) \n3- Consulta           (consulta em título, autor ou assunto) \n4- Empréstimo  \n5- Devolução \n6- Estatística do acervo \n7- Remover            (aposenta livros do acervo) \n0- Saida\n\n"))
 while opt != 0:
     if opt == 1:
         cadastrar()
@@ -148,6 +148,6 @@ while opt != 0:
     elif opt == 7: 
         id = int(input("Para remover livro do acervo, informe o id: "))
         delete(id)
-    opt = int(input("\nSelecione a opção desejada: \n1- Cadastrar          (para incluir livros novos) \n2- Listar             (lista todo o acervo) \n3- Consulta           (consulta em título, autor ou assunto) \n4- Empréstimo  \n5- Devolução \n6- Estatística do acervo \n7- Remover    (aposenta livros do acervo) \n0- Saida\n\n"))
+    opt = int(input("\nSelecione a opção desejada: \n1- Cadastrar          (para incluir livros novos) \n2- Listar             (lista todo o acervo) \n3- Consulta           (consulta em título, autor ou assunto) \n4- Empréstimo  \n5- Devolução \n6- Estatística do acervo \n7- Remover            (aposenta livros do acervo) \n0- Saida\n\n"))
 print("Bye")
             
